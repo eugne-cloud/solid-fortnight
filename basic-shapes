@@ -1,0 +1,9 @@
+//pcode002 - basic 2d primitives
+//2D Primitives
+size(300,200);
+point(30,50);
+line(10,10,50,50);
+rect(10,30,20,40);
+ellipse(10,30,20,40);
+triangle(30, 75, 58, 20, 86, 75);
+quad(38, 31, 86, 20, 69, 63, 30, 76);
