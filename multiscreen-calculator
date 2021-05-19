@@ -1,0 +1,88 @@
+int scNo=0;
+String myText = "Type something";
+String myText1="weight", myText2="myText2", myText3="myText3", myAns="";
+int selText=0;
+void setup() {
+ size(500, 500);
+ //textAlign(CENTER, CENTER);
+ textSize(14);
+}
+void draw() {
+ if (scNo==0) {
+ dSc0();
+ } else if (scNo==1) {
+ dSc1();
+ } else if (scNo==2) {
+ dSc2();
+ }
+}
+void dSc0() {
+ background(255);
+ fill(0);
+ text("Continue", 12, 25);
+ rect(10, 50, 100, 50);
+}
+void dSc1() {
+ background(255);
+ fill(0);
+ text("Please choose your option:", 12, 25);
+ rect(10, 50, 100, 50);
+}
+void dSc2() {
+background(255);
+ 
+ fill(0);
+ text("Please input the weight in kg:", 10, 10);
+ 
+ fill(255, 0, 0);
+ rect(10, 30, 150, 20);
+ rect(10, 80, 100, 50);
+ fill(0);
+ text(myText1, 12, 45);
+ fill(0);
+ if (selText==1) {
+ myText1= myText;
+ text(myText1, 12, 45);
+ }
+ 
+ fill(0);
+ text(myAns, 10,150);
+}
+ 
+void mouseClicked() {
+ if (scNo==0) {
+ if (mouseX>10 && mouseX<160 && mouseY>50 && mouseY<100) {
+ scNo = 1;
+ }
+ } else if (scNo==1) {
+ if (mouseX>10 && mouseX<160 && mouseY>50 && mouseY<100) {
+ scNo = 2;
+ }
+ } else if (scNo==2) {
+ if (mouseX>10 && mouseX<160 && mouseY>30 && mouseY<50) {
+ myText = myText1;
+ selText = 1;
+ } else {
+ selText = 0;
+ }
+ 
+ if (mouseX>10 && mouseX<110 && mouseY>80 && mouseY<130) {
+ //calculate
+ float pd = 2.205*float(myText1);
+ myAns = "In pound: " + str(pd);
+ 
+ }
+ }
+}
+void keyPressed() {
+ if (keyCode == BACKSPACE) {
+ if (myText.length() > 0) {
+ myText = myText.substring(0, myText.length()-1);
+ }
+ } else if (keyCode == DELETE) {
+ myText = "";
+ } else if (keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
+ myText = myText + key;
+ }
+}
+ 
