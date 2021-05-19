@@ -1,0 +1,55 @@
+int nos = 5;
+int [] fType = new int[nos];
+int [][] fPos = new int[nos][2];
+int [] fSpeed = new int[nos];
+ 
+void setup() {
+ size(400,400);
+ for (int i = 0; i<nos; i++) {
+ fType[i] = int(random(4));
+ fPos[i][0] = int(random(width));
+ fPos[i][1] = -10;
+ fSpeed[i] = int(random(5));
+ }
+ 
+}
+ 
+void draw() {
+ background(255);
+ dObject();
+ mObject();
+}
+ 
+void mObject() {
+ for (int i=0; i<nos; i++) {
+ fPos[i][1] = fPos[i][1] + fSpeed[i];
+ 
+ if (fPos[i][1]> height-30) {
+ fPos[i][0] = int(random(width));
+ fPos[i][1] = -10;
+ fType[i] = int(random(4));
+ }
+ }
+}
+ 
+void dObject() {
+ color c;
+ for (int i=0; i<nos; i++) {
+ fill(dColor(fType[i]));
+ ellipse(fPos[i][0],fPos[i][1], 10,10);
+ }
+}
+ 
+color dColor(int cNo) {
+ color c;
+ if (cNo == 0)
+ c = color(0,0,0);
+ else if (cNo == 1)
+ c = color(255,0,0);
+ else if (cNo == 2)
+ c = color(255,255,0);
+ else
+ c = color(255,0,255);
+ 
+ return c;
+}
