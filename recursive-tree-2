@@ -1,0 +1,57 @@
+//pcode057 - recursive tree
+float x1, y1, x2, y2;
+float ang=0;
+float len=100;
+ 
+void setup() {
+ size(400,300);
+}
+ 
+void draw() {
+ background(255);
+ x1 = width/2;
+ y1 = height;
+ ang=float(mouseX)/float(width)*180;
+ len=float(mouseY)/float(height)*100;
+ drawBranch(5, ang, x1, y1, len, 270);
+}
+ 
+void drawBranch(int layer, float ag, float x, float y, float l, float a) {
+ float xEnd, yEnd;
+ 
+ xEnd = x + l*cos(radians(a)); 
+ yEnd = y + l*sin(radians(a));
+ if (layer>1) {
+ line(x, y, xEnd, yEnd);
+ drawBranch(layer - 1, ag, xEnd, yEnd, l*.9, a+ag);
+ drawBranch(layer - 1, ag, xEnd, yEnd, l*.9, a-ag);
+ } else
+ line(x, y, xEnd, yEnd); 
+ fill(255,0,0);
+ ellipse(xEnd, yEnd, 10,10);
+}
+ 
+
+void setup() {
+ size(640,360);
+}
+ 
+void draw() {
+ background(255);
+ drawCircle(width/2,height/2,200);
+}
+ 
+void drawCircle(float x, float y, float radius) {
+ stroke(0);
+ noFill();
+ ellipse(x, y, radius, radius);
+ if(radius > 2) {
+   /* 
+   drawCircle() calls itself twice, creating a branching effect. 
+   For every circle, a smaller circle is drawn to the left and the right.
+   */
+ 
+   drawCircle(x + radius/2, y, radius/2);
+   drawCircle(x - radius/2, y, radius/2);
+ }
+}
