@@ -1,0 +1,84 @@
+float a, b, c, d;
+PImage img, img1, img2, img3;
+PShape earth, sun, moon, mars;
+int s = 0;
+
+void setup() {
+size(1200, 600, P3D);
+
+img = loadImage("globe.jpg");
+earth = createShape(SPHERE, 30);
+earth.setTexture(img);
+earth.setStroke(false);
+
+img1 = loadImage("moon.jpg");
+moon= createShape(SPHERE, 10);
+moon.setTexture(img1);
+moon.setStroke(false);
+
+img2 = loadImage("sun.jpg");
+sun = createShape(SPHERE, 60);
+sun.setTexture(img2);
+sun.setStroke(false);
+
+img3 = loadImage("mars.png");
+mars = createShape(SPHERE, 35);
+mars.setTexture(img3);
+mars.setStroke(false);
+noStroke();
+}
+
+void draw() {
+background(255);
+lights();
+
+
+pushMatrix(); //Sun
+translate(width/2, height/2, 0);
+rotateY(radians(a));
+shape(sun);
+
+pushMatrix(); // Mars
+rotateY(radians(b));
+translate(150, 0, 0);
+shape(mars);
+popMatrix();
+
+pushMatrix(); // Earth
+rotateY(radians(c));
+translate(300, 0, 0);
+shape(earth);
+
+pushMatrix(); // Moon
+rotateY(radians(d));
+translate(50, 0, 0);
+
+shape(moon);
+popMatrix();
+
+popMatrix();
+
+popMatrix();
+
+fill(255, 0, 0);
+rect(100, 560, 100, 50);
+
+fill(0, 255, 0);
+rect(200, 560, 100, 50);
+
+if (s!=0) {
+a+=0.5;
+b+=2;
+c+=1.5;
+d+=5;
+}
+}
+
+void mouseReleased() {
+if (mouseX>100 && mouseX<200 && mouseY>560 && mouseY<600) {
+s = 0;
+}
+if (mouseX>200 && mouseX<300 && mouseY>560 && mouseY<600) {
+s = 1;
+}
+}
