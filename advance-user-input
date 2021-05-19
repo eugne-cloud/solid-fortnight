@@ -1,0 +1,58 @@
+String myText = "Type something";
+String myText1="myText1", myText2="myText2", myText3="myText3";
+int selText=0;
+void setup() {
+ size(500, 500);
+ //textAlign(CENTER, CENTER);
+ textSize(14);
+}
+void draw() {
+ background(255);
+ 
+ fill(255, 0, 0);
+ rect(10, 10, 150, 20);
+ rect(10, 40, 150, 20);
+ rect(10, 70, 150, 20);
+ 
+ fill(0);
+ text(myText1, 12, 25);
+ text(myText2, 12, 55);
+ text(myText3, 12, 85);
+ 
+ fill(0);
+ if (selText==1) {
+ myText1= myText;
+ text(myText1, 12, 25);
+ } else if (selText==2) {
+ myText2= myText;
+ text(myText2, 12, 55);
+ } else if (selText==3) {
+ myText3= myText;
+ text(myText3, 12, 85);
+ }
+}
+void mouseClicked() {
+ if (mouseX>10 && mouseX<160 && mouseY>10 && mouseY<30) {
+ myText = myText1;
+ selText = 1;
+ } else if (mouseX>10 && mouseX<160 && mouseY>40 && mouseY<60) {
+ myText = myText2;
+ selText = 2;
+ } else if (mouseX>10 && mouseX<160 && mouseY>70 && mouseY<90) {
+ myText = myText3;
+ selText = 3;
+ } else {
+ selText = 0;
+ }
+}
+void keyPressed() {
+ if (keyCode == BACKSPACE) {
+ if (myText.length() > 0) {
+ myText = myText.substring(0, myText.length()-1);
+ }
+ } else if (keyCode == DELETE) {
+ myText = "";
+ } else if (keyCode != SHIFT && keyCode != CONTROL && keyCode != ALT) {
+ myText = myText + key;
+ }
+}
